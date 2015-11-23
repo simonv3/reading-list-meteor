@@ -1,0 +1,6 @@
+{
+  "jshintConfig": {
+    "esnext": true,
+    "asi": true
+  }
+}

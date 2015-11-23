@@ -1,0 +1,68 @@
+h2 {
+  &::after {
+    font-size: 2rem;
+    margin-left: 1rem;
+  }
+  &.currently-reading::after {
+    content: '#reading';
+  }
+  &.all-books::after {
+    content: '';
+  }
+}
+
+.books {
+
+  ul {
+    list-style: none;
+
+    .book-item {
+      border-bottom: 1px solid $thin-line;
+    }
+  }
+
+  .actions {
+    text-align: right;
+
+    a {
+      display: inline-block;
+      height: 100%;
+      cursor: pointer;
+      padding: 0 .5rem;
+      box-sizing: padding-box;
+    }
+
+    i {
+      transition: 200ms transform;
+      font-size: small;
+    }
+
+    i.fa-chevron-down.upside-down {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.book-header {
+  .tags {
+    padding: 0 1rem;
+    margin: 0;
+    display: inline-block;
+
+    .tag {
+      display: inline-block;
+      font-size: small;
+      padding: 2px 8px;
+      background-color: $tag-background-color;
+      border-radius: 1rem;
+    }
+
+    .tag::before {
+      content: '#';
+    }
+  }
+}
+
+.book-data {
+  padding: 1rem;
+}

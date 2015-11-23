@@ -1,0 +1,36 @@
+.notes {
+
+  .Markdown,
+  textarea {
+    background-color: $notes-background-color;
+    padding: 1rem;
+  }
+
+  h3 {
+    font-size: 1.2em;
+  }
+
+  .show {
+    display: block;
+
+    &.editing {
+      display: none;
+    }
+  }
+
+  .edit {
+    display: none;
+
+    &.editing {
+      display: block;
+    }
+  }
+
+  textarea {
+    margin-left: 0;
+  }
+
+  button {
+    margin-left: 1rem;
+  }
+}

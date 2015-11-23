@@ -1,0 +1,13 @@
+.pill {
+  height: 2.5rem;
+  line-height: 2.25rem;
+  padding: 0 1rem .5rem;
+  margin-left: .5rem;
+  background-color: transparent;
+  border-color: $thin-line;
+  color: $black;
+
+  &:hover{
+    border-color: darken($thin-line, 10%);
+  }
+}

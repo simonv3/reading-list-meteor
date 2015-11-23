@@ -1,0 +1,66 @@
+.loading {
+  display: inline-block;
+}
+
+.search-toggle {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: $link-color;
+  padding: .25rem 1rem;
+  transition: .5s border-bottom, .5s color;
+
+  &.showing {
+    border-bottom: 2px solid $button-background-color;
+  }
+
+}
+
+.search-bar {
+  position: relative;
+  background-color: $off-white;
+  margin-bottom: 3rem;
+
+  form {
+    margin-bottom: 0;
+    padding: .5rem;
+
+    input {
+      margin: 0;
+    }
+
+    i {
+      top: 1.7rem;
+      position: absolute;
+      right: 1.5rem;
+    }
+  }
+
+  ol {
+    background-color: $off-white;
+    list-style: none;
+    position: absolute;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: padding-box;
+    box-shadow: 0px 6px 11px rgba(0, 0, 0, 0.05);
+
+    z-index: 1;
+  }
+}
+
+.search-result {
+
+  .book-title {
+    /*font-weight: bold;*/
+  }
+
+  .to-view {
+    margin-right: 1rem;
+  }
+
+  .actions {
+    text-align: right;
+  }
+}
