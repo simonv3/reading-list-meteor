@@ -11,6 +11,11 @@ h2 {
   }
 }
 
+.currently-reading.empty {
+  font-size: 2rem;
+  color: lighten($black, 50%);
+}
+
 .books {
 
   ul {

@@ -15,9 +15,16 @@ BookList = React.createClass({
       return <BookListItem readingObject={readingObject} key={readingObject.title + readingObject.isbn13}/>
     }); // better: .title + '' + book.isnb13}/>
 
+    const currentlyReadingClasses = classNames({
+      'empty': currentlyReading.length === 0
+    }, 'currently-reading')
+
+
     return (
       <div className="books">
-        <h2 className="currently-reading">Currently Reading</h2>
+        <h2 className={currentlyReadingClasses}>
+          Currently Reading { currentlyReading.length === 0 ? '(empty)' : ''}
+        </h2>
         <ul>
           {currentlyReading}
         </ul>
@@ -26,6 +33,7 @@ BookList = React.createClass({
         <ul>
           {readingObjects}
         </ul>
+        { readingObjects.length === 0 ? <div className="empty-list">Start searching for books to start populating your book list</div> : ''}
       </div>
     );
   }

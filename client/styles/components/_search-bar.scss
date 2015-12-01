@@ -50,6 +50,35 @@
   }
 }
 
+.filters {
+  float: left;
+  margin-top: 1.25rem;
+  display: none;
+
+  &.showing {
+    display: inline-block;
+  }
+
+  label {
+    display: inline-block;
+    margin-right: 2rem;
+  }
+}
+
+.search-button {
+  float: right;
+  margin-top: .5rem;
+  display: none;
+
+  &.showing {
+    display: inline-block;
+  }
+
+  button {
+    margin-bottom: 0;
+  }
+}
+
 .search-result {
 
   .book-title {

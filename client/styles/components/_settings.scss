@@ -1,0 +1,16 @@
+.settings {
+  display: inline-block;
+  float: right;
+  font-size: 5rem;
+
+  a {
+    color: lighten($black, 25%);
+    cursor: pointer;
+    transition: 200ms transform;
+  }
+
+  &.open a {
+    transform: rotate(360deg);
+    color: $black;
+  }
+}

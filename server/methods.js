@@ -1,7 +1,8 @@
 
 Meteor.methods({
 
-  searchISBN (query, callback) {
+  searchISBN (query, options, callback) {
+
     const isbn10 = /[0-9]{10}/;
     const isbn13 = /[0-9]{13}/;
 
@@ -19,7 +20,15 @@ Meteor.methods({
         callback(error, null);
       }
 
-      if (res13 !== null) {
+      if (options.searchAuthor) {
+        ISBNDB.Books.search({'query': query, 'type': 'author_name'},
+          callbackSuccessWrapper,
+          callbackErrorWrapper)
+      } else if (options.searchISBN) {
+        ISBNDB.Books.get(query,
+          callbackSuccessWrapper,
+          callbackErrorWrapper)
+      } else if (res13 !== null) {
         ISBNDB.Books.get(res13[0],
           callbackSuccessWrapper,
           callbackErrorWrapper);

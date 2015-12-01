@@ -1,0 +1,8 @@
+{
+  "public": {},
+  "private": {
+    "isbndb": {
+      "key": "<ISBNDB KEY>"
+    }
+  }
+}

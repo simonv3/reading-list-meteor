@@ -1,4 +1,4 @@
-SearchBar = React.createClass({
+LocalSearchBar = React.createClass({
   watchIfEmpty(event) {
     const searchQuery = event.target.value;
     if (searchQuery === '') {
@@ -10,13 +10,10 @@ SearchBar = React.createClass({
       <div className="search-bar">
         <form className="row" onSubmit={this.props.onUserEntersSearch} onChange={this.watchIfEmpty}>
           <SearchInput
-            placeholder={this.props.placeholder}
+            placeholder="Search your books..."
             searchQuery={this.props.searchQuery}/>
           { this.props.isSearching ? <i className="fa fa-spinner fa-spin"></i> : ' '}
         </form>
-        <SearchResults
-          searchResults={this.props.searchResults}
-          addTagToBook={this.props.addTagToBook}/>
       </div>
     );
   }

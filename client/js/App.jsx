@@ -18,7 +18,7 @@ App = React.createClass({
     let query = {}
 
     if (this.state.localSearchQueryFinal) {
-      query.text = new RegExp(this.state.localSearchQueryFinal.toLowerCase(), 'i');
+      query.title = new RegExp(this.state.localSearchQueryFinal.toLowerCase(), 'i');
     }
 
     return {
@@ -28,75 +28,26 @@ App = React.createClass({
   },
 
   resetResults() {
-    if (!this.state.searchingLocal) {
-      this.setState({
-        searchResults: []
-      })
-    }
     this.setState({
-      localSearchQuery: '',
       localSearchQueryFinal: '',
       isSearching: false
     })
-  },
-
-  handleUserRemoteSearchQuery: function(event) {
-    event.preventDefault();
-
-    var that = this;
-
-    that.setState({
-      isSearching: true,
-      searchResults: []
-    });
-
-    var searchQuery = event.target[0].value;
-    if (searchQuery.length >= 3) {
-      Meteor.call('searchISBN', searchQuery, function(err, result) {
-        if (err) console.log(err)
-
-        that.setState({
-          searchResults: result,
-          isSearching: false
-        })
-      });
-
-    } else {
-      this.resetResults()
-    }
-  },
-
-  afterSearchAddTagWrapper: function(book, input) {
-    console.log('tag wrapper');
-    this.addTagToBook(book, input)
-    this.resetResults()
-  },
-
-  addTagToBook: function(book, input) {
-    book.tags = _.isString(input) ? [input] : input;
-
-    Meteor.call('addReadingObject', book);
   },
 
   handleUserLocalSearchQuery(event) {
     event.preventDefault();
     const value = event.target[0].value;
 
+    console.log('value', value)
+
     this.setState({
-      localSearchQuery: value,
       localSearchQueryFinal: value
     })
   },
 
-  toggleSearchAll() {
+  toggleSearchLocation() {
     this.setState({
-      searchingLocal: false,
-    })
-  },
-
-  toggleSearchLocal() {
-    this.setState({
-      searchingLocal: true
+      searchingLocal: !this.state.searchingLocal,
     })
   },
 
@@ -113,29 +64,21 @@ App = React.createClass({
     return (
       <div className="container">
         <header>
+          <Settings></Settings>
           <h1>Reading List ({this.data.readingObjectsCount})</h1>
           <div className="search">
             <label>Search:</label>
             <button
               className={pillAllClasses}
-              onClick={this.toggleSearchAll}>all books</button>
+              onClick={this.toggleSearchLocation}>all books</button>
             <button
               className={pillLocalClasses}
-              onClick={this.toggleSearchLocal}>your books</button>
-            { !this.state.searchingLocal && <SearchBar
-              placeholder="Search all books..."
-              resetResults={this.resetResults}
-              searchResults={this.state.searchResults}
-              isSearching={this.state.isSearching}
-              searchQuery={this.props.remoteSearchQuery}
-              onUserEntersSearch={this.handleUserRemoteSearchQuery}
-              addTagToBook={this.afterSearchAddTagWrapper}/> }
-            { this.state.searchingLocal && <SearchBar
-              placeholder="Search your books..."
+              onClick={this.toggleSearchLocation}>your books</button>
+            { !this.state.searchingLocal && <RemoteSearchBar/> }
+            { this.state.searchingLocal && <LocalSearchBar
               resetResults={this.resetResults}
               isSearching={this.state.isSearching}
-              searchResults={[]}
-              searchQuery={this.props.localSearchQuery}
+              searchQuery={this.props.localSearchQueryFinal}
               onUserEntersSearch={this.handleUserLocalSearchQuery} /> }
           </div>
         </header>
